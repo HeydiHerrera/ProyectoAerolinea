@@ -1,0 +1,15 @@
+﻿<div class='login-container'>
+  <div class='login-card'>
+    <div class='logo'>✈️</div>
+    <h1>AEROLINEA LOS PRIMOS</h1>
+    <div class='form-group'>
+      <input type='text' [(ngModel)]='usuario' placeholder='Usuario' />
+    </div>
+    <div class='form-group'>
+      <input type='password' [(ngModel)]='password' placeholder='Contrasena' />
+    </div>
+    <p class='error' *ngIf='error'>{{ error }}</p>
+    <button (click)='login()'>INICIAR SESION</button>
+    <p class='link' (click)='irARegistro()'>No tienes cuenta? Registrate</p>
+  </div>
+</div>

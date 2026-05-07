@@ -20,4 +20,18 @@ export class AuthService {
   guardarToken(token: string) {
     localStorage.setItem('token', token);
   }
+
+  getRol(): string {
+    const token = localStorage.getItem('token');
+    if (!token) return '';
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.rol || '';
+  }
+
+  getUsername(): string {
+    const token = localStorage.getItem('token');
+    if (!token) return '';
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.sub || '';
+  }
 }

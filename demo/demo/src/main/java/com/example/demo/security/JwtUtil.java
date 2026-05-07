@@ -11,9 +11,10 @@ public class JwtUtil {
 
     private Key key = Keys.hmacShaKeyFor("clave123clave123clave123clave123".getBytes());
 
-    public String generateToken(String username) {
+    public String generateToken(String username, String rol) {
         return Jwts.builder()
                 .setSubject(username)
+                .claim("rol", rol)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }

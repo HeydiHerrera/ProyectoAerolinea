@@ -27,7 +27,7 @@ export class LoginComponent {
     this.auth.login(body).subscribe({
       next: (token) => {
         this.auth.guardarToken(token);
-        alert('Login exitoso!');
+        this.router.navigate(['/dashboard']);
       },
       error: () => {
         this.error = 'Usuario o contrasena incorrectos';

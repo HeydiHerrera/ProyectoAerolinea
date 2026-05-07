@@ -34,7 +34,7 @@ public class AuthController {
         Usuario usuario = usuarioService.findByUsername(user.getUsername());
 
         if (usuario != null && usuario.getPassword().equals(user.getPassword())) {
-            String token = jwtUtil.generateToken(usuario.getUsername());
+            String token = jwtUtil.generateToken(usuario.getUsername(), usuario.getRol());
             return ResponseEntity.ok(token);
         } else {
             return ResponseEntity.status(401).body("Credenciales incorrectas");

@@ -1,0 +1,41 @@
+﻿<div class='reporte-container'>
+  <div class='reporte-card'>
+    <div class='logo'>✈</div>
+    <h1>AEROLINEA LOS PRIMOS</h1>
+    <h2>REPORTE DE EQUIPAJE POR VUELO</h2>
+    <div class='filtros'>
+      <div class='form-group'>
+        <label>Numero de Vuelo *</label>
+        <input type='text' [(ngModel)]='numeroVuelo' placeholder='Ej: Lp365' />
+      </div>
+      <div class='btn-row'>
+        <button class='btn-buscar' (click)='buscar()'>BUSCAR</button>
+        <button class='btn-limpiar' (click)='limpiar()'>LIMPIAR</button>
+      </div>
+    </div>
+    <p class='error' *ngIf='error'>{{ error }}</p>
+    <div class='tabla-container' *ngIf='equipaje.length > 0'>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre Pasajero</th>
+            <th>Cantidad Maletas</th>
+            <th>Recargo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let e of equipaje'>
+            <td>{{ e.nombre }}</td>
+            <td>{{ e.maletas }}</td>
+            <td>{{ e.recargo | currency }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class='btn-export'>
+        <button class='btn-pdf' (click)='imprimirPDF()'>📄 IMPRIMIR PDF</button>
+        <button class='btn-excel' (click)='exportarExcel()'>📊 EXPORTAR EXCEL</button>
+      </div>
+    </div>
+    <button class='btn-volver' (click)='volver()'>VOLVER</button>
+  </div>
+</div>

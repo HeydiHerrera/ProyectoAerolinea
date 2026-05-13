@@ -1,0 +1,53 @@
+﻿<div class='reporte-container'>
+  <div class='reporte-card'>
+    <div class='logo'>✈</div>
+    <h1>AEROLINEA LOS PRIMOS</h1>
+    <h2>REPORTE DE AVIONES POR AEROLINEA</h2>
+
+    <div class='filtros'>
+      <div class='form-group'>
+        <label>Aerolinea *</label>
+        <select [(ngModel)]='aerolineaSeleccionada'>
+          <option [ngValue]='null'>Seleccione una aerolinea</option>
+          <option *ngFor='let a of aerolineas' [ngValue]='a.id'>{{ a.nombre }}</option>
+        </select>
+      </div>
+      <div class='btn-row'>
+        <button class='btn-buscar' (click)='buscar()'>BUSCAR</button>
+        <button class='btn-limpiar' (click)='limpiar()'>LIMPIAR</button>
+      </div>
+    </div>
+
+    <p class='error' *ngIf='error'>{{ error }}</p>
+
+    <div class='tabla-container' *ngIf='aviones.length > 0'>
+      <table>
+        <thead>
+          <tr>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Año</th>
+            <th>Capacidad</th>
+            <th>Vuelos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let a of aviones'>
+            <td>{{ a.modelo }}</td>
+            <td>{{ a.marca }}</td>
+            <td>{{ a.anio }}</td>
+            <td>{{ a.capacidad }}</td>
+            <td>{{ a.cantidadVuelos }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class='btn-export'>
+        <button class='btn-pdf' (click)='imprimirPDF()'>📄 IMPRIMIR PDF</button>
+        <button class='btn-excel' (click)='exportarExcel()'>📊 EXPORTAR EXCEL</button>
+      </div>
+    </div>
+
+    <button class='btn-volver' (click)='volver()'>VOLVER</button>
+  </div>
+</div>

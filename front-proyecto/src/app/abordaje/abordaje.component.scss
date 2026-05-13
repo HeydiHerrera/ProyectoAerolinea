@@ -1,0 +1,69 @@
+﻿.abordaje-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(160deg, #1a3a5c, #2d6a9f, #1a3a5c);
+}
+.abordaje-card {
+  background: #f0f4f8;
+  padding: 36px;
+  border-radius: 4px;
+  border-top: 6px solid #c8a020;
+  width: 480px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.logo { font-size: 44px; margin-bottom: 6px; }
+h1 { font-size: 15px; letter-spacing: 2px; color: #1a3a5c; font-weight: 700; margin-bottom: 4px; }
+h2 { font-size: 13px; color: #2d6a9f; margin-bottom: 20px; letter-spacing: 1px; }
+.info { color: #888; font-size: 13px; margin-bottom: 16px; }
+.vuelo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.vuelo-numero { font-weight: 700; color: #1a3a5c; font-size: 14px; margin: 0; }
+.vuelo-detalle { font-size: 12px; color: #555; margin: 2px 0; }
+.vuelo-fecha { font-size: 11px; color: #888; margin: 0; }
+.btn-seleccionar {
+  padding: 8px 16px;
+  background: #1a3a5c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn-seleccionar:hover { background: #2d6a9f; }
+.vuelo-seleccionado {
+  background: #e8f0f8;
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+.vuelo-seleccionado p { margin: 4px 0; font-size: 13px; color: #1a3a5c; }
+.form-group { margin-bottom: 14px; text-align: left; }
+label { display: block; font-size: 12px; color: #555; margin-bottom: 4px; font-weight: 600; }
+input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; box-sizing: border-box; background: white; }
+.btn-row { display: flex; gap: 12px; margin-bottom: 10px; }
+.btn-abordar { width: 60%; padding: 13px; background: #1a3a5c; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.btn-abordar:hover { background: #2d6a9f; }
+.btn-nuevo { width: 40%; padding: 13px; background: #888; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.btn-nuevo:hover { background: #666; }
+.btn-finalizar { width: 100%; padding: 13px; background: #c8a020; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer; margin-top: 4px; }
+.btn-finalizar:hover { background: #a08010; }
+.btn-cancelar { width: 100%; padding: 12px; background: #888; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer; margin-top: 12px; }
+.btn-cancelar:hover { background: #666; }
+.error { color: #c0392b; font-size: 12px; margin: 6px 0; }
+.success { color: green; font-size: 13px; margin: 8px 0; }

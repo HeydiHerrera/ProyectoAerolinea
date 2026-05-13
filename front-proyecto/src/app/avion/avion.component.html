@@ -1,0 +1,43 @@
+﻿<div class='avion-container'>
+  <div class='avion-card'>
+    <div class='logo'>✈</div>
+    <h1>AEROLINEA LOS PRIMOS</h1>
+    <h2>REGISTRAR AVION</h2>
+    <div class='form-group'>
+      <label>Aerolinea *</label>
+      <select [(ngModel)]='avion.aerolinea.id'>
+        <option [ngValue]='null'>Seleccione una aerolinea</option>
+        <option *ngFor='let a of aerolineas' [ngValue]='a.id'>{{ a.nombre }}</option>
+      </select>
+    </div>
+    <div class='form-group'>
+      <label>Modelo *</label>
+      <input type='text' [(ngModel)]='avion.modelo' placeholder='Ej: Boeing 737' />
+    </div>
+    <div class='form-group'>
+      <label>Marca *</label>
+      <input type='text' [(ngModel)]='avion.marca' placeholder='Ej: Boeing' />
+    </div>
+    <div class='form-group'>
+      <label>Año *</label>
+      <input type='number' [(ngModel)]='avion.anio' placeholder='Ej: 2020' />
+    </div>
+    <div class='form-group'>
+      <label>Capacidad de pasajeros *</label>
+      <input type='number' [(ngModel)]='avion.capacidad' placeholder='Ej: 180' />
+    </div>
+    <div class='form-group'>
+      <label>Estado</label>
+      <select [(ngModel)]='avion.estado'>
+        <option value='Activo'>Activo</option>
+        <option value='Inactivo'>Inactivo</option>
+      </select>
+    </div>
+    <p class='error' *ngIf='error'>{{ error }}</p>
+    <p class='success' *ngIf='success'>{{ success }}</p>
+    <div class='btn-row'>
+      <button class='btn-guardar' (click)='guardar()'>GUARDAR</button>
+      <button class='btn-limpiar' (click)='limpiar()'>LIMPIAR</button>
+    </div>
+  </div>
+</div>

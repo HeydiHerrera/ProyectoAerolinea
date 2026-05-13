@@ -1,0 +1,44 @@
+﻿.consulta-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(160deg, #1a3a5c, #2d6a9f, #1a3a5c);
+}
+.consulta-card {
+  background: #f0f4f8;
+  padding: 36px;
+  border-radius: 4px;
+  border-top: 6px solid #c8a020;
+  width: 600px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+.logo { font-size: 44px; margin-bottom: 6px; }
+h1 { font-size: 15px; letter-spacing: 2px; color: #1a3a5c; font-weight: 700; margin-bottom: 4px; }
+h2 { font-size: 13px; color: #2d6a9f; margin-bottom: 20px; letter-spacing: 1px; }
+.filtros { background: white; padding: 16px; border-radius: 4px; margin-bottom: 20px; text-align: left; }
+.form-group { margin-bottom: 12px; }
+label { display: block; font-size: 12px; color: #555; margin-bottom: 4px; font-weight: 600; }
+input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; box-sizing: border-box; }
+.btn-row { display: flex; gap: 12px; margin-top: 12px; }
+.btn-buscar { width: 70%; padding: 12px; background: #1a3a5c; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.btn-buscar:hover { background: #2d6a9f; }
+.btn-limpiar { width: 30%; padding: 12px; background: #888; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.btn-limpiar:hover { background: #666; }
+.resultado { background: white; border-radius: 4px; padding: 20px; margin-bottom: 20px; text-align: left; }
+.vuelo-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #ddd; }
+.vuelo-numero { font-size: 18px; font-weight: 700; color: #1a3a5c; }
+.vuelo-estado { background: #c8a020; color: white; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 1px; }
+.vuelo-detalle { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.detalle-label { font-size: 11px; color: #888; margin: 0 0 4px 0; letter-spacing: 1px; text-transform: uppercase; }
+.detalle-valor { font-size: 13px; color: #333; font-weight: 600; margin: 0; }
+.btn-export { display: flex; gap: 12px; margin-top: 16px; }
+.btn-pdf { flex: 1; padding: 12px; background: #c0392b; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.btn-pdf:hover { background: #e74c3c; }
+.btn-excel { flex: 1; padding: 12px; background: #27ae60; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.btn-excel:hover { background: #2ecc71; }
+.btn-volver { width: 100%; padding: 12px; background: #888; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer; margin-top: 8px; }
+.btn-volver:hover { background: #666; }
+.error { color: #c0392b; font-size: 12px; margin: 6px 0; }

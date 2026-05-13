@@ -1,0 +1,60 @@
+﻿<div class='consulta-container'>
+  <div class='consulta-card'>
+    <div class='logo'>✈</div>
+    <h1>AEROLINEA LOS PRIMOS</h1>
+    <h2>CONSULTA DE VUELO</h2>
+
+    <div class='filtros'>
+      <div class='form-group'>
+        <label>Numero de Vuelo *</label>
+        <input type='text' [(ngModel)]='numeroVuelo' placeholder='Ej: Lp365' />
+      </div>
+      <div class='btn-row'>
+        <button class='btn-buscar' (click)='buscar()'>BUSCAR</button>
+        <button class='btn-limpiar' (click)='limpiar()'>LIMPIAR</button>
+      </div>
+    </div>
+
+    <p class='error' *ngIf='error'>{{ error }}</p>
+
+    <div class='resultado' *ngIf='vuelo'>
+      <div class='vuelo-header'>
+        <span class='vuelo-numero'>Vuelo {{ vuelo.numeroVuelo }}</span>
+        <span class='vuelo-estado'>{{ vuelo.estado }}</span>
+      </div>
+      <div class='vuelo-detalle'>
+        <div class='detalle-item'>
+          <p class='detalle-label'>Modelo Avion</p>
+          <p class='detalle-valor'>{{ vuelo.modelo }}</p>
+        </div>
+        <div class='detalle-item'>
+          <p class='detalle-label'>Aerolinea</p>
+          <p class='detalle-valor'>{{ vuelo.aerolinea }}</p>
+        </div>
+        <div class='detalle-item'>
+          <p class='detalle-label'>Origen</p>
+          <p class='detalle-valor'>{{ vuelo.origen }}</p>
+        </div>
+        <div class='detalle-item'>
+          <p class='detalle-label'>Destino</p>
+          <p class='detalle-valor'>{{ vuelo.destino }}</p>
+        </div>
+        <div class='detalle-item'>
+          <p class='detalle-label'>Fecha y Hora Salida</p>
+          <p class='detalle-valor'>{{ vuelo.fechaSalida }}</p>
+        </div>
+        <div class='detalle-item'>
+          <p class='detalle-label'>Fecha y Hora Llegada</p>
+          <p class='detalle-valor'>{{ vuelo.fechaLlegada }}</p>
+        </div>
+      </div>
+
+      <div class='btn-export'>
+        <button class='btn-pdf' (click)='imprimirPDF()'>📄 IMPRIMIR PDF</button>
+        <button class='btn-excel' (click)='exportarExcel()'>📊 EXPORTAR EXCEL</button>
+      </div>
+    </div>
+
+    <button class='btn-volver' (click)='volver()'>← VOLVER</button>
+  </div>
+</div>

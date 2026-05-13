@@ -1,0 +1,55 @@
+﻿<div class='dashboard-container'>
+  <div class='sidebar'>
+    <div class='logo'>✈</div>
+    <h1>AEROLINEA<br>LOS PRIMOS</h1>
+    <p class='usuario'>{{ username }}</p>
+    <p class='rol'>{{ rol }}</p>
+
+    <nav>
+      <!-- ADMINISTRADOR AEROLINEA -->
+      <div *ngIf='rol === "AdministradorAerolinea"'>
+        <p class='menu-titulo'>AEROLINEA</p>
+        <button (click)='irA("tripulacion")'>👥 Crear Tripulacion</button>
+        <button (click)='irA("avion")'>🛩 Registrar Avion</button>
+        <button (click)='irA("vuelo")'>✈ Crear Vuelo</button>
+        <p class='menu-titulo'>CONSULTAS</p>
+        <button (click)='irA("reporte-aviones")'>📊 Aviones por Aerolinea</button>
+        <button (click)='irA("reporte-pasajeros")'>👤 Pasajeros por Vuelo</button>
+        <button (click)='irA("reporte-equipaje")'>🧳 Equipaje por Vuelo</button>
+        <button (click)='irA("reporte-destinos")'>🌍 Destinos Autorizados</button>
+        <button (click)='irA("reporte-vuelos")'>🗓 Vuelos por Fecha</button>
+        <button (click)='irA("reporte-aerolineas")'>🏢 Aerolineas por Aeropuerto</button>
+        <button (click)='irA("consulta-vuelo")'>🔍 Consultar Vuelo</button>
+      </div>
+
+      <!-- ADMINISTRADOR ABORDAJE -->
+      <div *ngIf='rol === "AdministradorAbordaje"'>
+        <p class='menu-titulo'>VUELOS</p>
+        <button (click)='irA("abordaje")'>🎫 Abordaje</button>
+      </div>
+
+      <!-- CONSULTAS AEROLINEA -->
+      <div *ngIf='rol === "ConsultasAerolinea"'>
+        <p class='menu-titulo'>CONSULTAS</p>
+        <button (click)='irA("reporte-pasajeros")'>👤 Pasajeros por Vuelo</button>
+        <button (click)='irA("reporte-equipaje")'>🧳 Equipaje por Vuelo</button>
+      </div>
+
+      <!-- PASAJERO -->
+      <div *ngIf='rol === "PASAJERO"'>
+        <p class='menu-titulo'>CONSULTAS</p>
+        <button (click)='irA("consulta-vuelo")'>🔍 Consultar Vuelo</button>
+        <button (click)='irA("reporte-destinos")'>🌍 Destinos Autorizados</button>
+        <button (click)='irA("reporte-vuelos")'>🗓 Vuelos por Fecha</button>
+        <button (click)='irA("reporte-aerolineas")'>🏢 Aerolineas por Aeropuerto</button>
+      </div>
+    </nav>
+
+    <button class='btn-logout' (click)='cerrarSesion()'>🚪 Cerrar Sesion</button>
+  </div>
+
+  <div class='contenido'>
+    <h2>Bienvenido, {{ username }}</h2>
+    <p>Selecciona una opcion del menu para comenzar.</p>
+  </div>
+</div>

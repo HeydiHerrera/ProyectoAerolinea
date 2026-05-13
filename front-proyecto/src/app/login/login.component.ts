@@ -38,4 +38,8 @@ export class LoginComponent {
   irARegistro() {
     this.router.navigate(['/registro']);
   }
+
+  irA(ruta: string) {
+    this.router.navigate(['/' + ruta]);
+  }
 }

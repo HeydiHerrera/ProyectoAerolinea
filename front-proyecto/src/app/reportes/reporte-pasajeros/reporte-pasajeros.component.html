@@ -1,0 +1,45 @@
+﻿<div class='reporte-container'>
+  <div class='reporte-card'>
+    <div class='logo'>✈</div>
+    <h1>AEROLINEA LOS PRIMOS</h1>
+    <h2>REPORTE DE PASAJEROS POR VUELO</h2>
+    <div class='filtros'>
+      <div class='form-group'>
+        <label>Numero de Vuelo *</label>
+        <input type='text' [(ngModel)]='numeroVuelo' placeholder='Ej: Lp365' />
+      </div>
+      <div class='btn-row'>
+        <button class='btn-buscar' (click)='buscar()'>BUSCAR</button>
+        <button class='btn-limpiar' (click)='limpiar()'>LIMPIAR</button>
+      </div>
+    </div>
+    <p class='error' *ngIf='error'>{{ error }}</p>
+    <div class='tabla-container' *ngIf='pasajeros.length > 0'>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Pasaporte</th>
+            <th>Nacionalidad</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let p of pasajeros'>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.pasaporte }}</td>
+            <td>{{ p.nacionalidad }}</td>
+            <td>{{ p.telefono }}</td>
+            <td>{{ p.correo }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class='btn-export'>
+        <button class='btn-pdf' (click)='imprimirPDF()'>📄 IMPRIMIR PDF</button>
+        <button class='btn-excel' (click)='exportarExcel()'>📊 EXPORTAR EXCEL</button>
+      </div>
+    </div>
+    <button class='btn-volver' (click)='volver()'>VOLVER</button>
+  </div>
+</div>

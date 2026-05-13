@@ -1,6 +1,6 @@
 ﻿<div class='login-container'>
   <div class='login-card'>
-    <div class='logo'>✈️</div>
+    <div class='logo'>✈</div>
     <h1>AEROLINEA LOS PRIMOS</h1>
     <div class='form-group'>
       <input type='text' [(ngModel)]='usuario' placeholder='Usuario' />
@@ -9,7 +9,24 @@
       <input type='password' [(ngModel)]='password' placeholder='Contrasena' />
     </div>
     <p class='error' *ngIf='error'>{{ error }}</p>
-    <button (click)='login()'>INICIAR SESION</button>
+    <button class='btn-login' (click)='login()'>INICIAR SESION</button>
     <p class='link' (click)='irARegistro()'>No tienes cuenta? Registrate</p>
+
+    <div class='separador'><span>acceso publico</span></div>
+
+    <div class='btn-publico-row'>
+      <button class='btn-publico' (click)='irA("consulta-vuelo")'>
+        🔍<span>Consultar Vuelo</span>
+      </button>
+      <button class='btn-publico' (click)='irA("reporte-destinos")'>
+        🌍<span>Destinos</span>
+      </button>
+      <button class='btn-publico' (click)='irA("reporte-vuelos")'>
+        🗓<span>Vuelos</span>
+      </button>
+      <button class='btn-publico' (click)='irA("reporte-aerolineas")'>
+        🏢<span>Aerolineas</span>
+      </button>
+    </div>
   </div>
 </div>

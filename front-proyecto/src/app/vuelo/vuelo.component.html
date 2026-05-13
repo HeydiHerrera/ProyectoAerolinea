@@ -1,0 +1,86 @@
+﻿<div class='vuelo-container'>
+  <div class='vuelo-card'>
+    <div class='logo'>✈</div>
+    <h1>AEROLINEA LOS PRIMOS</h1>
+    <h2>CREAR VUELO</h2>
+
+    <!-- PASO 1: AEROPUERTOS Y FECHAS -->
+    <div *ngIf='paso === 1'>
+      <div class='form-group'>
+        <label>Numero de Vuelo *</label>
+        <input type='text' [(ngModel)]='vuelo.numeroVuelo' placeholder='Ej: LP001' />
+      </div>
+
+      <div class='form-group'>
+        <label>Aeropuerto de Salida *</label>
+        <select [(ngModel)]='vuelo.aeropuertoSalida.id'>
+          <option [ngValue]='null'>Seleccione aeropuerto de salida</option>
+          <option *ngFor='let a of aeropuertos' [ngValue]='a.id'>{{ a.nombre }} - {{ a.ciudad }}, {{ a.pais }}</option>
+        </select>
+      </div>
+
+      <div class='form-group'>
+        <label>Fecha y Hora de Salida *</label>
+        <input type='datetime-local' [(ngModel)]='vuelo.fechaHoraSalida' />
+      </div>
+
+      <div class='form-group'>
+        <label>Aeropuerto de Llegada *</label>
+        <select [(ngModel)]='vuelo.aeropuertoLlegada.id'>
+          <option [ngValue]='null'>Seleccione aeropuerto de llegada</option>
+          <option *ngFor='let a of aeropuertos' [ngValue]='a.id'>{{ a.nombre }} - {{ a.ciudad }}, {{ a.pais }}</option>
+        </select>
+      </div>
+
+      <div class='form-group'>
+        <label>Fecha y Hora de Llegada *</label>
+        <input type='datetime-local' [(ngModel)]='vuelo.fechaHoraLlegada' />
+      </div>
+
+      <p class='error' *ngIf='error'>{{ error }}</p>
+
+      <div class='btn-row'>
+        <button class='btn-siguiente' (click)='siguiente()'>SIGUIENTE</button>
+        <button class='btn-cancelar' (click)='cancelar()'>CANCELAR</button>
+      </div>
+    </div>
+
+    <!-- PASO 2: AVION, TRIPULACION Y PRECIOS -->
+    <div *ngIf='paso === 2'>
+      <div class='form-group'>
+        <label>Avion *</label>
+        <select [(ngModel)]='vuelo.avion.id'>
+          <option [ngValue]='null'>Seleccione un avion</option>
+          <option *ngFor='let a of aviones' [ngValue]='a.id'>{{ a.modelo }} - {{ a.marca }} ({{ a.capacidad }} pasajeros)</option>
+        </select>
+      </div>
+
+      <div class='form-group'>
+        <label>Precio Clase Economica *</label>
+        <input type='number' [(ngModel)]='vuelo.precioEconomica' placeholder='Ej: 150.00' />
+      </div>
+
+      <div class='form-group'>
+        <label>Precio Clase Ejecutiva *</label>
+        <input type='number' [(ngModel)]='vuelo.precioEjecutiva' placeholder='Ej: 350.00' />
+      </div>
+
+      <div class='form-group'>
+        <label>Tripulacion *</label>
+        <select [(ngModel)]='vuelo.tripulacion.id'>
+          <option [ngValue]='null'>Seleccione una tripulacion</option>
+          <option *ngFor='let t of tripulaciones' [ngValue]='t.id'>Tripulacion #{{ t.id }}</option>
+        </select>
+      </div>
+
+      <p class='error' *ngIf='error'>{{ error }}</p>
+      <p class='success' *ngIf='success'>{{ success }}</p>
+
+      <div class='btn-row'>
+        <button class='btn-siguiente' (click)='guardar()'>GUARDAR</button>
+        <button class='btn-cancelar' (click)='paso = 1'>ATRAS</button>
+      </div>
+    </div>
+
+  </div>
+</div>

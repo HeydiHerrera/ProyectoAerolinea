@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -40,7 +40,7 @@ export class CompraBoletoComponent implements OnInit {
   }
 
   cargarAsientos() {
-    this.http.get<any[]>('http://localhost:8080/reporte/asientos/' + this.vuelo.numeroVuelo).subscribe({
+    this.http.get<any[]>('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/reporte/asientos/' + this.vuelo.numeroVuelo).subscribe({
       next: (data) => {
         this.asientos = [...data];
         this.cdr.detectChanges();
@@ -94,7 +94,7 @@ export class CompraBoletoComponent implements OnInit {
       metodoPago: this.metodoPago
     };
 
-    this.http.post<any>('http://localhost:8080/compra/comprar', body).subscribe({
+    this.http.post<any>('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/compra/comprar', body).subscribe({
       next: (data) => {
         this.boletoGenerado = data;
         this.paso = 3;
@@ -117,12 +117,6 @@ export class CompraBoletoComponent implements OnInit {
 
   irDashboard() {
     this.router.navigate(['/dashboard']);
-  }
-
-  getAsientosOcupados(): string[] {
-    return this.asientos
-      .filter(a => a.estado === 'OCUPADO')
-      .map(a => a.numero);
   }
 
   getAsientosBoleto(): string[] {

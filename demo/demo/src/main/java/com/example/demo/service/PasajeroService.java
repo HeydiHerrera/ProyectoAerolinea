@@ -18,4 +18,7 @@ public class PasajeroService {
     public Pasajero guardar(Pasajero pasajero) {
         return repo.save(pasajero);
     }
+    public Pasajero findByPasaporte(String pasaporte) {
+        return repo.findByPasaporte(pasaporte).orElse(null);
+    }
 }

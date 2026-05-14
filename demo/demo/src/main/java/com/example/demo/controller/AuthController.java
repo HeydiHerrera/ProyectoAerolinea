@@ -31,14 +31,21 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Datos incompletos");
         }
 
+        // Buscar en tabla Usuario
         Usuario usuario = usuarioService.findByUsername(user.getUsername());
-
         if (usuario != null && usuario.getPassword().equals(user.getPassword())) {
             String token = jwtUtil.generateToken(usuario.getUsername(), usuario.getRol());
             return ResponseEntity.ok(token);
-        } else {
-            return ResponseEntity.status(401).body("Credenciales incorrectas");
         }
+
+        // Buscar en tabla Pasajero
+        Pasajero pasajero = pasajeroService.findByPasaporte(user.getUsername());
+        if (pasajero != null && pasajero.getPassword().equals(user.getPassword())) {
+            String token = jwtUtil.generateToken(pasajero.getPasaporte(), pasajero.getRol());
+            return ResponseEntity.ok(token);
+        }
+
+        return ResponseEntity.status(401).body("Credenciales incorrectas");
     }
 
     @PostMapping("/registro")

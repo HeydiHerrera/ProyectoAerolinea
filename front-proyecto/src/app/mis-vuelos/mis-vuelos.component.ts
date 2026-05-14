@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -18,7 +18,7 @@ export class MisVuelosComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.http.get<any[]>('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/compra/vuelos-disponibles').subscribe({
+    this.http.get<any[]>('http://localhost:8080/compra/vuelos-disponibles').subscribe({
       next: (data) => {
         this.vuelos = [...data];
         this.cdr.detectChanges();

@@ -1,6 +1,6 @@
 <div class='compra-container'>
   <div class='compra-card'>
-    <div class='logo'>✈️</div>
+    <div class='logo'>✈</div>
     <h1>AEROLINEA LOS PRIMOS</h1>
     <h2>COMPRA DE BOLETO</h2>
 
@@ -10,15 +10,12 @@
       <p class='vuelo-fecha'>{{ vuelo.fechaSalida }}</p>
     </div>
 
-    <!-- PASO 1: SELECCION DE ASIENTO -->
     <div *ngIf='paso === 1'>
       <h3>Selecciona tu asiento</h3>
-
       <div class='asiento-seleccionado' *ngIf='asientoSeleccionado'>
         <p>Asiento: <strong>{{ asientoSeleccionado.numero }}</strong> — {{ asientoSeleccionado.clase }}</p>
         <p>Precio: <strong>$ {{ getPrecio() }}</strong></p>
       </div>
-
       <div class='asientos-grid'>
         <div *ngFor='let a of asientos'
           class='asiento-btn'
@@ -30,25 +27,20 @@
           <span class='clase-badge'>{{ a.clase === "EJECUTIVA" ? "EJ" : "EC" }}</span>
         </div>
       </div>
-
       <p class='error' *ngIf='error'>{{ error }}</p>
-
       <div class='btn-row'>
         <button class='btn-siguiente' (click)='siguiente()'>CONTINUAR</button>
         <button class='btn-cancelar' (click)='volver()'>CANCELAR</button>
       </div>
     </div>
 
-    <!-- PASO 2: PAGO -->
     <div *ngIf='paso === 2'>
       <h3>Metodo de pago</h3>
-
       <div class='resumen'>
         <p>Vuelo: <strong>{{ vuelo.numeroVuelo }}</strong></p>
         <p>Asiento: <strong>{{ asientoSeleccionado?.numero }}</strong> — {{ asientoSeleccionado?.clase }}</p>
         <p>Total: <strong>$ {{ getPrecio() }}</strong></p>
       </div>
-
       <div class='form-group'>
         <label>Metodo de pago</label>
         <select [(ngModel)]='metodoPago'>
@@ -56,21 +48,17 @@
           <option value='EFECTIVO'>Efectivo</option>
         </select>
       </div>
-
       <div class='form-group' *ngIf='metodoPago === "TARJETA"'>
         <label>Numero de tarjeta</label>
         <input type='text' [(ngModel)]='numeroTarjeta' placeholder='1234 5678 9012 3456' maxlength='16' />
       </div>
-
       <p class='error' *ngIf='error'>{{ error }}</p>
-
       <div class='btn-row'>
         <button class='btn-siguiente' (click)='confirmarCompra()'>CONFIRMAR PAGO</button>
         <button class='btn-cancelar' (click)='volver()'>ATRAS</button>
       </div>
     </div>
 
-    <!-- PASO 3: CONFIRMACION -->
     <div *ngIf='paso === 3' class='confirmacion'>
       <div class='check'>✅</div>
       <h3>Boleto comprado exitosamente</h3>

@@ -1,0 +1,40 @@
+﻿.vuelos-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(160deg, #1a3a5c, #2d6a9f, #1a3a5c);
+}
+.vuelos-card {
+  background: #f0f4f8;
+  padding: 36px;
+  border-radius: 4px;
+  border-top: 6px solid #c8a020;
+  width: 600px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+.logo { font-size: 44px; margin-bottom: 6px; }
+h1 { font-size: 15px; letter-spacing: 2px; color: #1a3a5c; font-weight: 700; margin-bottom: 4px; }
+h2 { font-size: 13px; color: #2d6a9f; margin-bottom: 20px; letter-spacing: 1px; }
+.vuelo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 12px;
+  text-align: left;
+}
+.vuelo-numero { font-weight: 700; color: #1a3a5c; font-size: 15px; margin: 0 0 4px 0; }
+.vuelo-ruta { font-size: 13px; color: #333; margin: 0 0 4px 0; }
+.vuelo-fecha { font-size: 12px; color: #888; margin: 0 0 4px 0; }
+.vuelo-precio { font-size: 12px; color: #555; margin: 0; }
+.btn-seleccionar { padding: 10px 16px; background: #1a3a5c; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.btn-seleccionar:hover { background: #2d6a9f; }
+.btn-volver { width: 100%; padding: 12px; background: #888; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer; margin-top: 16px; }
+.btn-volver:hover { background: #666; }
+.error { color: #c0392b; font-size: 12px; margin: 6px 0; }

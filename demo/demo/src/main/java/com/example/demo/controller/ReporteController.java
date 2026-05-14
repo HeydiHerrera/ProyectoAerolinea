@@ -204,4 +204,22 @@ public ResponseEntity<?> getAsientosPorVuelo(@PathVariable String numeroVuelo) {
     var asientos = asientoRepo.findByAvionId(vuelo.getAvion().getId());
     return ResponseEntity.ok(asientos);
 }
+    @GetMapping("/mi-boleto/{numeroVuelo}/{username}")
+    public ResponseEntity<?> getMiBoleto(@PathVariable String numeroVuelo, @PathVariable String username) {
+        var vuelo = vueloRepo.findByNumeroVuelo(numeroVuelo);
+        if (vuelo == null) {
+            return ResponseEntity.status(404).body("Vuelo no encontrado");
+        }
+        var boletos = boletoRepo.findByVueloId(vuelo.getId());
+        for (var boleto : boletos) {
+            if (boleto.getPasajero().getPasaporte().equals(username)) {
+                Map<String, Object> resultado = new HashMap<>();
+                resultado.put("asiento", boleto.getAsiento().getNumero());
+                resultado.put("clase", boleto.getAsiento().getClase());
+                resultado.put("precio", boleto.getPrecio());
+                return ResponseEntity.ok(resultado);
+            }
+        }
+        return ResponseEntity.status(404).body("No tienes boleto para este vuelo");
+    }
 }

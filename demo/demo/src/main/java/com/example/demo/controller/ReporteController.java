@@ -193,4 +193,15 @@ public class ReporteController {
         resultado.put("estado", vuelo.getEstado());
         return ResponseEntity.ok(resultado);
     }
+    @Autowired private com.example.demo.repository.AsientoRepository asientoRepo;
+
+@GetMapping("/asientos/{numeroVuelo}")
+public ResponseEntity<?> getAsientosPorVuelo(@PathVariable String numeroVuelo) {
+    var vuelo = vueloRepo.findByNumeroVuelo(numeroVuelo);
+    if (vuelo == null) {
+        return ResponseEntity.status(404).body("El numero de vuelo ingresado no se encontro");
+    }
+    var asientos = asientoRepo.findByAvionId(vuelo.getAvion().getId());
+    return ResponseEntity.ok(asientos);
+}
 }

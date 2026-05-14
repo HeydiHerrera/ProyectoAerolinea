@@ -1,0 +1,24 @@
+<div class='vuelos-container'>
+  <div class='vuelos-card'>
+    <div class='logo'>✈️</div>
+    <h1>AEROLINEA LOS PRIMOS</h1>
+    <h2>VUELOS DISPONIBLES</h2>
+
+    <p class='error' *ngIf='error'>{{ error }}</p>
+
+    <div class='vuelo-item' *ngFor='let v of vuelos'>
+      <div class='vuelo-info'>
+        <p class='vuelo-numero'>Vuelo {{ v.numeroVuelo }}</p>
+        <p class='vuelo-ruta'>{{ v.origen }} → {{ v.destino }}</p>
+        <p class='vuelo-fecha'>Salida: {{ v.fechaSalida }}</p>
+        <p class='vuelo-precio'>
+          Economica: <strong>$ {{ v.precioEconomica }}</strong> |
+          Ejecutiva: <strong>$ {{ v.precioEjecutiva }}</strong>
+        </p>
+      </div>
+      <button class='btn-seleccionar' (click)='seleccionarVuelo(v)'>COMPRAR</button>
+    </div>
+
+    <button class='btn-volver' (click)='volver()'>VOLVER</button>
+  </div>
+</div>

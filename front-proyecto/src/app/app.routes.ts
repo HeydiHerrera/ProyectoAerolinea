@@ -1,4 +1,4 @@
-﻿import { Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { TripulacionComponent } from './tripulacion/tripulacion.component';
@@ -13,6 +13,8 @@ import { ReporteDestinosComponent } from './reportes/reporte-destinos/reporte-de
 import { ReporteAerolineasComponent } from './reportes/reporte-aerolineas/reporte-aerolineas.component';
 import { ReporteVuelosComponent } from './reportes/reporte-vuelos/reporte-vuelos.component';
 import { ConsultaVueloComponent } from './consulta-vuelo/consulta-vuelo.component';
+import { MisVuelosComponent } from './mis-vuelos/mis-vuelos.component';
+import { CompraBoletoComponent } from './compra-boleto/compra-boleto.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RolGuard } from './guards/rol.guard';
 
@@ -20,15 +22,13 @@ export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
-
-  // Rutas publicas sin login
   { path: 'consulta-vuelo', component: ConsultaVueloComponent },
   { path: 'reporte-destinos', component: ReporteDestinosComponent },
   { path: 'reporte-aerolineas', component: ReporteAerolineasComponent },
   { path: 'reporte-vuelos', component: ReporteVuelosComponent },
-
-  // Rutas privadas
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'mis-vuelos', component: MisVuelosComponent, canActivate: [RolGuard], data: { roles: ['PASAJERO'] } },
+  { path: 'compra-boleto', component: CompraBoletoComponent, canActivate: [RolGuard], data: { roles: ['PASAJERO'] } },
   { path: 'tripulacion', component: TripulacionComponent, canActivate: [RolGuard], data: { roles: ['AdministradorAerolinea'] } },
   { path: 'avion', component: AvionComponent, canActivate: [RolGuard], data: { roles: ['AdministradorAerolinea'] } },
   { path: 'vuelo', component: VueloComponent, canActivate: [RolGuard], data: { roles: ['AdministradorAerolinea'] } },

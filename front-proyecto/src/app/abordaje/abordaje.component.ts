@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -26,7 +26,7 @@ export class AbordajeComponent implements OnInit {
   }
 
   cargarVuelos() {
-    this.http.get<any[]>('http://localhost:8080/abordaje/vuelos').subscribe({
+    this.http.get<any[]>('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/abordaje/vuelos').subscribe({
       next: (data) => {
         this.vuelos = [...data];
         this.cdr.detectChanges();
@@ -55,7 +55,7 @@ export class AbordajeComponent implements OnInit {
       pasaporte: this.pasaporte,
       maletas: this.maletas
     };
-    this.http.post('http://localhost:8080/abordaje/abordar', body, { responseType: 'text' }).subscribe({
+    this.http.post('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/abordaje/abordar', body, { responseType: 'text' }).subscribe({
       next: (res) => {
         this.success = res;
         this.error = '';
@@ -71,7 +71,7 @@ export class AbordajeComponent implements OnInit {
   }
 
   finalizarAbordaje() {
-    this.http.post('http://localhost:8080/abordaje/finalizar/' + this.vueloSeleccionado.id, {}, { responseType: 'text' }).subscribe({
+    this.http.post('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/abordaje/finalizar/' + this.vueloSeleccionado.id, {}, { responseType: 'text' }).subscribe({
       next: (res) => {
         this.success = res;
         this.vueloSeleccionado = null;

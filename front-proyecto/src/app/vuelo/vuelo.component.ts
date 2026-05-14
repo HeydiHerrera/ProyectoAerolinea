@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -36,7 +36,7 @@ export class VueloComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    this.http.get<any>('http://localhost:8080/vuelo/datos').subscribe({
+    this.http.get<any>('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/vuelo/datos').subscribe({
       next: (data) => {
         this.aeropuertos = data.aeropuertos;
         this.aviones = data.aviones;
@@ -80,7 +80,7 @@ export class VueloComponent implements OnInit {
       return;
     }
     this.error = '';
-    this.http.post('http://localhost:8080/vuelo/guardar', this.vuelo, { responseType: 'text' }).subscribe({
+    this.http.post('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/vuelo/guardar', this.vuelo, { responseType: 'text' }).subscribe({
       next: (res) => {
         this.success = 'Se creo con exito el vuelo';
         setTimeout(() => {

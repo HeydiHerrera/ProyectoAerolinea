@@ -1,0 +1,223 @@
+﻿.mapa-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.avion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 320px;
+}
+
+.nariz {
+  width: 80px;
+  height: 60px;
+  background: #1a3a5c;
+  border-radius: 50% 50% 0 0;
+  clip-path: ellipse(40px 60px at 50% 100%);
+}
+
+.cabina {
+  width: 160px;
+  background: #1a3a5c;
+  padding: 8px 0;
+  text-align: center;
+}
+
+.cabina-texto {
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.cuerpo {
+  width: 260px;
+  background: #f0f4f8;
+  border-left: 4px solid #1a3a5c;
+  border-right: 4px solid #1a3a5c;
+  padding: 10px 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ala-izq {
+  position: absolute;
+  left: -80px;
+  top: 60px;
+  width: 80px;
+  height: 40px;
+  background: #1a3a5c;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.ala-der {
+  position: absolute;
+  right: -80px;
+  top: 60px;
+  width: 80px;
+  height: 40px;
+  background: #1a3a5c;
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.seccion {
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.seccion-titulo {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 4px 0;
+  margin-bottom: 4px;
+}
+
+.ejecutiva-titulo {
+  color: #1a3a5c;
+  border-bottom: 1px solid #1a3a5c;
+}
+
+.economica-titulo {
+  color: #2d6a9f;
+  border-bottom: 1px solid #2d6a9f;
+}
+
+.separador {
+  font-size: 9px;
+  color: #888;
+  letter-spacing: 1px;
+  padding: 6px 0;
+  border-top: 1px dashed #ccc;
+  border-bottom: 1px dashed #ccc;
+  width: 100%;
+  text-align: center;
+  margin: 4px 0;
+}
+
+.filas {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+}
+
+.fila {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.grupo-izq, .grupo-der {
+  display: flex;
+  gap: 2px;
+}
+
+.pasillo {
+  width: 12px;
+}
+
+.asiento {
+  width: 24px;
+  height: 20px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+}
+
+.asiento.boleto { background: #c8a020; }
+.asiento.ocupado { background: #c0392b; }
+.asiento.ejecutiva { background: #1a3a5c; }
+.asiento.economica { background: #2d6a9f; }
+
+.cola {
+  width: 160px;
+  height: 30px;
+  background: #1a3a5c;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cola-izq {
+  width: 60px;
+  height: 25px;
+  background: #1a3a5c;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  position: absolute;
+  left: -50px;
+  bottom: 0;
+}
+
+.cola-der {
+  width: 60px;
+  height: 25px;
+  background: #1a3a5c;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  position: absolute;
+  right: -50px;
+  bottom: 0;
+}
+
+.motor-izq {
+  width: 40px;
+  height: 12px;
+  background: #888;
+  border-radius: 6px;
+  position: absolute;
+  left: 40px;
+  margin-top: -20px;
+}
+
+.motor-der {
+  width: 40px;
+  height: 12px;
+  background: #888;
+  border-radius: 6px;
+  position: absolute;
+  right: 40px;
+  margin-top: -20px;
+}
+
+.leyenda {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #555;
+}
+
+.leyenda-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+}
+
+.leyenda-color.boleto { background: #c8a020; }
+.leyenda-color.ocupado { background: #c0392b; }
+.leyenda-color.ejecutiva { background: #1a3a5c; }
+.leyenda-color.economica { background: #2d6a9f; }
+
+.error { color: #c0392b; font-size: 12px; }

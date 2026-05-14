@@ -1,0 +1,88 @@
+<div class='compra-container'>
+  <div class='compra-card'>
+    <div class='logo'>✈️</div>
+    <h1>AEROLINEA LOS PRIMOS</h1>
+    <h2>COMPRA DE BOLETO</h2>
+
+    <div class='vuelo-info' *ngIf='vuelo'>
+      <p class='vuelo-numero'>Vuelo {{ vuelo.numeroVuelo }}</p>
+      <p class='vuelo-ruta'>{{ vuelo.origen }} → {{ vuelo.destino }}</p>
+      <p class='vuelo-fecha'>{{ vuelo.fechaSalida }}</p>
+    </div>
+
+    <!-- PASO 1: SELECCION DE ASIENTO -->
+    <div *ngIf='paso === 1'>
+      <h3>Selecciona tu asiento</h3>
+
+      <div class='asiento-seleccionado' *ngIf='asientoSeleccionado'>
+        <p>Asiento: <strong>{{ asientoSeleccionado.numero }}</strong> — {{ asientoSeleccionado.clase }}</p>
+        <p>Precio: <strong>$ {{ getPrecio() }}</strong></p>
+      </div>
+
+      <div class='asientos-grid'>
+        <div *ngFor='let a of asientos'
+          class='asiento-btn'
+          [class.disponible]='a.estado === "DISPONIBLE"'
+          [class.ocupado]='a.estado === "OCUPADO"'
+          [class.seleccionado]='asientoSeleccionado?.numero === a.numero'
+          (click)='seleccionarAsiento(a)'>
+          {{ a.numero }}
+          <span class='clase-badge'>{{ a.clase === "EJECUTIVA" ? "EJ" : "EC" }}</span>
+        </div>
+      </div>
+
+      <p class='error' *ngIf='error'>{{ error }}</p>
+
+      <div class='btn-row'>
+        <button class='btn-siguiente' (click)='siguiente()'>CONTINUAR</button>
+        <button class='btn-cancelar' (click)='volver()'>CANCELAR</button>
+      </div>
+    </div>
+
+    <!-- PASO 2: PAGO -->
+    <div *ngIf='paso === 2'>
+      <h3>Metodo de pago</h3>
+
+      <div class='resumen'>
+        <p>Vuelo: <strong>{{ vuelo.numeroVuelo }}</strong></p>
+        <p>Asiento: <strong>{{ asientoSeleccionado?.numero }}</strong> — {{ asientoSeleccionado?.clase }}</p>
+        <p>Total: <strong>$ {{ getPrecio() }}</strong></p>
+      </div>
+
+      <div class='form-group'>
+        <label>Metodo de pago</label>
+        <select [(ngModel)]='metodoPago'>
+          <option value='TARJETA'>Tarjeta de credito/debito</option>
+          <option value='EFECTIVO'>Efectivo</option>
+        </select>
+      </div>
+
+      <div class='form-group' *ngIf='metodoPago === "TARJETA"'>
+        <label>Numero de tarjeta</label>
+        <input type='text' [(ngModel)]='numeroTarjeta' placeholder='1234 5678 9012 3456' maxlength='16' />
+      </div>
+
+      <p class='error' *ngIf='error'>{{ error }}</p>
+
+      <div class='btn-row'>
+        <button class='btn-siguiente' (click)='confirmarCompra()'>CONFIRMAR PAGO</button>
+        <button class='btn-cancelar' (click)='volver()'>ATRAS</button>
+      </div>
+    </div>
+
+    <!-- PASO 3: CONFIRMACION -->
+    <div *ngIf='paso === 3' class='confirmacion'>
+      <div class='check'>✅</div>
+      <h3>Boleto comprado exitosamente</h3>
+      <div class='boleto-detalle' *ngIf='boletoGenerado'>
+        <p>Vuelo: <strong>{{ boletoGenerado.numeroVuelo }}</strong></p>
+        <p>Asiento: <strong>{{ boletoGenerado.asiento }}</strong></p>
+        <p>Clase: <strong>{{ boletoGenerado.clase }}</strong></p>
+        <p>Precio: <strong>$ {{ boletoGenerado.precio }}</strong></p>
+        <p>Metodo de pago: <strong>{{ boletoGenerado.metodoPago }}</strong></p>
+      </div>
+      <button class='btn-siguiente' (click)='irDashboard()'>IR AL INICIO</button>
+    </div>
+
+  </div>
+</div>

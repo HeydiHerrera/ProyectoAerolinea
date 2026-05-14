@@ -1,0 +1,76 @@
+﻿<div class='mapa-container'>
+  <div class='avion'>
+    <div class='nariz'></div>
+    <div class='cabina'>
+      <div class='cabina-texto'>✈ CABINA</div>
+    </div>
+    <div class='cuerpo'>
+      <div class='ala-izq'></div>
+      <div class='ala-der'></div>
+
+      <div class='seccion'>
+        <div class='seccion-titulo ejecutiva-titulo'>EJECUTIVA</div>
+        <div class='filas'>
+          <div class='fila' *ngFor='let fila of ejecutiva'>
+            <div class='grupo-izq'>
+              <div class='asiento' *ngFor='let a of getIzquierda(fila)'
+                [class]='getColor(a)'
+                [title]='asientosBoleto.includes(a.numero) ? a.numero + " - TU ASIENTO" : a.numero + " - " + a.estado'>
+                {{ a.numero }}
+              </div>
+            </div>
+            <div class='pasillo'></div>
+            <div class='grupo-der'>
+              <div class='asiento' *ngFor='let a of getDerecha(fila)'
+                [class]='getColor(a)'
+                [title]='asientosBoleto.includes(a.numero) ? a.numero + " - TU ASIENTO" : a.numero + " - " + a.estado'>
+                {{ a.numero }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='separador'><span>— SALIDA DE EMERGENCIA —</span></div>
+
+      <div class='seccion'>
+        <div class='seccion-titulo economica-titulo'>ECONOMICA</div>
+        <div class='filas'>
+          <div class='fila' *ngFor='let fila of economica'>
+            <div class='grupo-izq'>
+              <div class='asiento' *ngFor='let a of getIzquierda(fila)'
+                [class]='getColor(a)'
+                [title]='asientosBoleto.includes(a.numero) ? a.numero + " - TU ASIENTO" : a.numero + " - " + a.estado'>
+                {{ a.numero }}
+              </div>
+            </div>
+            <div class='pasillo'></div>
+            <div class='grupo-der'>
+              <div class='asiento' *ngFor='let a of getDerecha(fila)'
+                [class]='getColor(a)'
+                [title]='asientosBoleto.includes(a.numero) ? a.numero + " - TU ASIENTO" : a.numero + " - " + a.estado'>
+                {{ a.numero }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class='cola'>
+      <div class='cola-izq'></div>
+      <div class='cola-der'></div>
+    </div>
+    <div class='motor-izq'></div>
+    <div class='motor-der'></div>
+  </div>
+
+  <div class='leyenda'>
+    <div class='leyenda-item'><div class='leyenda-color boleto'></div><span>Tu asiento</span></div>
+    <div class='leyenda-item'><div class='leyenda-color ocupado'></div><span>Ocupado</span></div>
+    <div class='leyenda-item'><div class='leyenda-color ejecutiva'></div><span>Ejecutiva</span></div>
+    <div class='leyenda-item'><div class='leyenda-color economica'></div><span>Economica</span></div>
+  </div>
+
+  <p class='error' *ngIf='error'>{{ error }}</p>
+</div>

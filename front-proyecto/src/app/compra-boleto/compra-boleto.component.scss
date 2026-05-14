@@ -1,0 +1,61 @@
+﻿.compra-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(160deg, #1a3a5c, #2d6a9f, #1a3a5c);
+}
+.compra-card {
+  background: #f0f4f8;
+  padding: 36px;
+  border-radius: 4px;
+  border-top: 6px solid #c8a020;
+  width: 600px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.logo { font-size: 44px; margin-bottom: 6px; }
+h1 { font-size: 15px; letter-spacing: 2px; color: #1a3a5c; font-weight: 700; margin-bottom: 4px; }
+h2 { font-size: 13px; color: #2d6a9f; margin-bottom: 20px; letter-spacing: 1px; }
+h3 { font-size: 13px; color: #1a3a5c; font-weight: 700; margin-bottom: 16px; }
+.vuelo-info { background: #e8f0f8; border-radius: 4px; padding: 12px; margin-bottom: 16px; }
+.vuelo-numero { font-weight: 700; color: #1a3a5c; font-size: 15px; margin: 0 0 4px 0; }
+.vuelo-ruta { font-size: 13px; color: #333; margin: 0 0 4px 0; }
+.vuelo-fecha { font-size: 12px; color: #888; margin: 0; }
+.asiento-seleccionado { background: #fff8e1; border: 1px solid #c8a020; border-radius: 4px; padding: 10px; margin-bottom: 12px; font-size: 13px; }
+.asientos-grid { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 16px 0; }
+.asiento-btn {
+  width: 50px;
+  height: 40px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.asiento-btn.disponible { background: #2d6a9f; color: white; }
+.asiento-btn.ocupado { background: #ccc; color: #999; cursor: not-allowed; }
+.asiento-btn.seleccionado { background: #c8a020; color: white; border-color: #a08010; }
+.clase-badge { font-size: 8px; opacity: 0.8; }
+.resumen { background: white; border-radius: 4px; padding: 16px; margin-bottom: 16px; text-align: left; font-size: 13px; }
+.resumen p { margin: 4px 0; }
+.form-group { margin-bottom: 14px; text-align: left; }
+label { display: block; font-size: 12px; color: #555; margin-bottom: 4px; font-weight: 600; }
+input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; box-sizing: border-box; }
+.btn-row { display: flex; gap: 12px; margin-top: 16px; }
+.btn-siguiente { width: 70%; padding: 13px; background: #1a3a5c; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.btn-siguiente:hover { background: #2d6a9f; }
+.btn-cancelar { width: 30%; padding: 13px; background: #888; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.btn-cancelar:hover { background: #666; }
+.confirmacion { text-align: center; padding: 20px 0; }
+.check { font-size: 48px; margin-bottom: 12px; }
+.boleto-detalle { background: white; border-radius: 4px; padding: 16px; margin: 16px 0; text-align: left; font-size: 13px; }
+.boleto-detalle p { margin: 6px 0; }
+.error { color: #c0392b; font-size: 12px; margin: 6px 0; }

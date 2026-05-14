@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.rol = this.auth.getRol();
     this.username = this.auth.getUsername();
+    console.log('Rol en dashboard:', this.rol);
     if (!this.rol) {
       this.router.navigate(['/login']);
     }

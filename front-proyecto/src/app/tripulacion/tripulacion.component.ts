@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -33,7 +33,7 @@ export class TripulacionComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    this.http.get<any>('http://localhost:8080/tripulacion/personal').subscribe({
+    this.http.get<any>('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/tripulacion/personal').subscribe({
       next: (data) => {
         this.pilotos = data.pilotos;
         this.copilotos = data.copilotos;
@@ -63,7 +63,7 @@ export class TripulacionComponent implements OnInit {
       cabina3: { id: this.seleccion.cabina3 }
     };
 
-    this.http.post('http://localhost:8080/tripulacion/guardar', body, { responseType: 'text' }).subscribe({
+    this.http.post('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/tripulacion/guardar', body, { responseType: 'text' }).subscribe({
       next: () => {
         this.success = 'Se creo con exito la tripulacion';
         setTimeout(() => {

@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,7 +22,7 @@ export class ReporteAerolineasComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private cdr: ChangeDetectorRef, private reporteService: ReporteService) {}
 
   ngOnInit() {
-    this.http.get<any[]>('http://localhost:8080/reporte/aeropuertos').subscribe({
+    this.http.get<any[]>('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/reporte/aeropuertos').subscribe({
       next: (data) => {
         this.aeropuertos = [...data];
         this.cdr.detectChanges();
@@ -38,7 +38,7 @@ export class ReporteAerolineasComponent implements OnInit {
     }
     this.error = '';
     this.aerolineas = [];
-    this.http.get<any[]>('http://localhost:8080/reporte/aerolineas-por-aeropuerto/' + this.aeropuertoSeleccionado).subscribe({
+    this.http.get<any[]>('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/reporte/aerolineas-por-aeropuerto/' + this.aeropuertoSeleccionado).subscribe({
       next: (data) => {
         this.aerolineas = [...data];
         this.cdr.detectChanges();
@@ -73,8 +73,12 @@ export class ReporteAerolineasComponent implements OnInit {
     this.error = '';
     this.cdr.detectChanges();
   }
-
-  volver() {
-    this.router.navigate(['/dashboard']);
+volver() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 }

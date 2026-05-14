@@ -1,11 +1,11 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private api = 'http://localhost:8080/auth';
+  private api = 'https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/auth';
 
   constructor(private http: HttpClient) {}
 

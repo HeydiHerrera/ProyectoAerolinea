@@ -1,4 +1,4 @@
-ï»¿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,7 +22,7 @@ export class ReporteAvionesComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private cdr: ChangeDetectorRef, private reporteService: ReporteService) {}
 
   ngOnInit() {
-    this.http.get<any[]>('http://localhost:8080/reporte/aerolineas').subscribe({
+    this.http.get<any[]>('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/reporte/aerolineas').subscribe({
       next: (data) => {
         this.aerolineas = [...data];
         this.cdr.detectChanges();
@@ -38,7 +38,7 @@ export class ReporteAvionesComponent implements OnInit {
     }
     this.error = '';
     this.aviones = [];
-    this.http.get<any[]>('http://localhost:8080/reporte/aviones/' + this.aerolineaSeleccionada).subscribe({
+    this.http.get<any[]>('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/reporte/aviones/' + this.aerolineaSeleccionada).subscribe({
       next: (data) => {
         this.aviones = [...data];
         this.cdr.detectChanges();
@@ -56,13 +56,13 @@ export class ReporteAvionesComponent implements OnInit {
   }
 
   imprimirPDF() {
-    const columnas = ['Modelo', 'Marca', 'AÃ±o', 'Capacidad', 'Vuelos'];
+    const columnas = ['Modelo', 'Marca', 'Año', 'Capacidad', 'Vuelos'];
     const filas = this.aviones.map(a => [a.modelo, a.marca, a.anio, a.capacidad, a.cantidadVuelos]);
     this.reporteService.generarPDF('Reporte de Aviones por Aerolinea', columnas, filas);
   }
 
   exportarExcel() {
-    const columnas = ['Modelo', 'Marca', 'AÃ±o', 'Capacidad', 'Vuelos'];
+    const columnas = ['Modelo', 'Marca', 'Año', 'Capacidad', 'Vuelos'];
     const filas = this.aviones.map(a => [a.modelo, a.marca, a.anio, a.capacidad, a.cantidadVuelos]);
     this.reporteService.generarExcel('Aviones por Aerolinea', columnas, filas);
   }

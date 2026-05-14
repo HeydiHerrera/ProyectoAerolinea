@@ -1,6 +1,6 @@
 ﻿<div class='consulta-container'>
   <div class='consulta-card'>
-    <div class='logo'>✈</div>
+    <div class='logo'>✈️</div>
     <h1>AEROLINEA LOS PRIMOS</h1>
     <h2>CONSULTA DE VUELO</h2>
 
@@ -49,10 +49,26 @@
         </div>
       </div>
 
+      <div class='boleto-info' *ngIf='boleto'>
+        <p class='boleto-titulo'>🎫 TU BOLETO</p>
+        <div class='boleto-detalle'>
+          <span>Asiento: <strong>{{ boleto.asiento }}</strong></span>
+          <span>Clase: <strong>{{ boleto.clase }}</strong></span>
+          <span>Estado: <strong>{{ boleto.estado }}</strong></span>
+        </div>
+      </div>
+
       <div class='btn-export'>
         <button class='btn-pdf' (click)='imprimirPDF()'>📄 IMPRIMIR PDF</button>
         <button class='btn-excel' (click)='exportarExcel()'>📊 EXPORTAR EXCEL</button>
       </div>
+
+      <div class='mapa-titulo'>MAPA DE ASIENTOS</div>
+      <app-mapa-asientos
+        *ngIf='mapaListo'
+        [numeroVuelo]='vuelo.numeroVuelo'
+        [asientosBoleto]='asientosBoleto'>
+      </app-mapa-asientos>
     </div>
 
     <button class='btn-volver' (click)='volver()'>← VOLVER</button>

@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -27,7 +27,7 @@ export class ReportePasajerosComponent {
     }
     this.error = '';
     this.pasajeros = [];
-    this.http.get<any[]>('http://localhost:8080/reporte/pasajeros/' + this.numeroVuelo).subscribe({
+    this.http.get<any[]>('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/reporte/pasajeros/' + this.numeroVuelo).subscribe({
       next: (data) => {
         this.pasajeros = [...data];
         this.cdr.detectChanges();

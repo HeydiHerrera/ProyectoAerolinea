@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -29,7 +29,7 @@ export class AvionComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    this.http.get<any[]>('http://localhost:8080/avion/aerolineas').subscribe({
+    this.http.get<any[]>('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/avion/aerolineas').subscribe({
       next: (data) => this.aerolineas = data,
       error: () => this.error = 'Error al cargar aerolineas'
     });
@@ -46,7 +46,7 @@ export class AvionComponent implements OnInit {
       return;
     }
     this.error = '';
-    this.http.post('http://localhost:8080/avion/guardar', this.avion, { responseType: 'text' }).subscribe({
+    this.http.post('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/avion/guardar', this.avion, { responseType: 'text' }).subscribe({
       next: (res) => {
         this.success = res;
         setTimeout(() => {

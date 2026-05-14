@@ -17,9 +17,11 @@ import { MisVuelosComponent } from './mis-vuelos/mis-vuelos.component';
 import { CompraBoletoComponent } from './compra-boleto/compra-boleto.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RolGuard } from './guards/rol.guard';
+import { BitacoraComponent } from './bitacora/bitacora.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'bitacora', component: BitacoraComponent, canActivate: [RolGuard], data: { roles: ['AdministradorAerolinea'] } },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'consulta-vuelo', component: ConsultaVueloComponent },

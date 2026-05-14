@@ -1,0 +1,147 @@
+.bitacora-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.header {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+
+  .header-icon { font-size: 3rem; margin-bottom: 10px; }
+  h1 { font-size: 1.5rem; letter-spacing: 3px; color: #e2b96f; margin: 0; }
+  h2 { font-size: 1rem; letter-spacing: 2px; color: #a0aec0; margin: 5px 0 0; }
+}
+
+.filtros {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+
+  .input-busqueda, .select-accion {
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 0.9rem;
+    outline: none;
+    flex: 1;
+    min-width: 200px;
+
+    &::placeholder { color: rgba(255,255,255,0.5); }
+    option { background: #1a1a2e; color: white; }
+  }
+}
+
+.stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+
+  .stat-card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 15px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.2);
+
+    .stat-numero { font-size: 2rem; font-weight: bold; color: #e2b96f; }
+    .stat-label { font-size: 0.8rem; color: #a0aec0; }
+  }
+}
+
+.tabla-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.registro {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  border-left: 4px solid;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+
+  &.login { border-color: #48bb78; }
+  &.error { border-color: #fc8181; background: rgba(252,129,129,0.1); }
+  &.registro { border-color: #63b3ed; }
+  &.compra { border-color: #e2b96f; }
+  &.abordaje { border-color: #76e4f7; }
+  &.recargo { border-color: #f6ad55; }
+  &.finalizar { border-color: #b794f4; }
+  &.vuelo { border-color: #68d391; }
+  &.tripulacion { border-color: #f687b3; }
+  &.default { border-color: #a0aec0; }
+
+  .registro-icono { font-size: 2rem; display: flex; align-items: center; }
+
+  .registro-info {
+    flex: 1;
+
+    .registro-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+
+      .registro-accion {
+        font-weight: bold;
+        color: #e2b96f;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+      }
+
+      .registro-fecha {
+        color: #a0aec0;
+        font-size: 0.8rem;
+      }
+    }
+
+    .registro-usuario {
+      color: #63b3ed;
+      font-size: 0.85rem;
+      margin-bottom: 3px;
+    }
+
+    .registro-detalle {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.vacio {
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+  padding: 40px;
+}
+
+.error {
+  color: #fc8181;
+  text-align: center;
+  padding: 20px;
+}
+
+.btn-volver {
+  width: 100%;
+  padding: 15px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+
+  &:hover { background: rgba(255,255,255,0.2); }
+}

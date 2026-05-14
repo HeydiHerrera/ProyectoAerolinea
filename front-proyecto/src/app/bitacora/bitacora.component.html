@@ -1,0 +1,54 @@
+<div class="bitacora-container">
+  <div class="header">
+    <div class="header-icon">📋</div>
+    <h1>AEROLINEA LOS PRIMOS</h1>
+    <h2>BITÁCORA DEL SISTEMA</h2>
+  </div>
+
+  <div class="filtros">
+    <input
+      type="text"
+      placeholder="🔍 Buscar por usuario o detalle..."
+      [(ngModel)]="busqueda"
+      (input)="filtrar()"
+      class="input-busqueda"
+    />
+    <select [(ngModel)]="filtroAccion" (change)="filtrar()" class="select-accion">
+      <option value="">Todas las acciones</option>
+      <option *ngFor="let accion of acciones" [value]="accion">{{ accion }}</option>
+    </select>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <span class="stat-numero">{{ registros.length }}</span>
+      <span class="stat-label">Total Registros</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-numero">{{ filtrados.length }}</span>
+      <span class="stat-label">Filtrados</span>
+    </div>
+  </div>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <div class="tabla-container" *ngIf="filtrados.length > 0">
+    <div class="registro" *ngFor="let r of filtrados" [ngClass]="getClase(r.accion)">
+      <div class="registro-icono">{{ getIcono(r.accion) }}</div>
+      <div class="registro-info">
+        <div class="registro-header">
+          <span class="registro-accion">{{ r.accion }}</span>
+          <span class="registro-fecha">{{ r.fechaHora | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+        </div>
+        <div class="registro-usuario">👤 {{ r.usuario }}</div>
+        <div class="registro-detalle">{{ r.detalle }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vacio" *ngIf="filtrados.length === 0 && !error">
+    No hay registros que coincidan con la búsqueda.
+  </div>
+
+  <button class="btn-volver" (click)="volver()">← VOLVER</button>
+</div>

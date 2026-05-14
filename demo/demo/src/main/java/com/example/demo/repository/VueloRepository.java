@@ -14,4 +14,6 @@ public interface VueloRepository extends JpaRepository<Vuelo, Long> {
     Long countByAvionAerolineaId(Long aerolineaId);
     List<Vuelo> findByFechaHoraSalidaBetween(LocalDateTime desde, LocalDateTime hasta);
     List<Vuelo> findByAvionIdAndEstadoIn(Long avionId, List<String> estados);
+    List<Vuelo> findByTripulacionIdAndEstadoIn(Long tripulacionId, List<String> estados);
+    List<Vuelo> findByAeropuertoSalidaIdAndAeropuertoLlegadaIdAndEstadoIn(Long salidaId, Long llegadaId, List<String> estados);
 }

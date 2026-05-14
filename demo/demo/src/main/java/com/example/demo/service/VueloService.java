@@ -36,6 +36,25 @@ public class VueloService {
         if (!vuelosActivos.isEmpty()) {
             return "El avion seleccionado ya tiene un vuelo activo o en curso.";
         }
+        var tripulacionActiva = vueloRepo.findByTripulacionIdAndEstadoIn(
+                vuelo.getTripulacion().getId(),
+                List.of("PENDIENTE ABORDAR", "EN VUELO")
+        );
+        if (!tripulacionActiva.isEmpty()) {
+            return "La tripulacion seleccionada ya tiene un vuelo activo o en curso.";
+        }
+        var rutaActiva = vueloRepo.findByAeropuertoSalidaIdAndAeropuertoLlegadaIdAndEstadoIn(
+                vuelo.getAeropuertoSalida().getId(),
+                vuelo.getAeropuertoLlegada().getId(),
+                List.of("PENDIENTE ABORDAR", "EN VUELO")
+        );
+        for (var v : rutaActiva) {
+            boolean seTraslapa = vuelo.getFechaHoraSalida().isBefore(v.getFechaHoraLlegada()) &&
+                    vuelo.getFechaHoraLlegada().isAfter(v.getFechaHoraSalida());
+            if (seTraslapa) {
+                return "Ya existe un vuelo activo con el mismo origen y destino en ese horario.";
+            }
+        }
         vuelo.setEstado("PENDIENTE ABORDAR");
         vueloRepo.save(vuelo);
         return "OK";

@@ -1,5 +1,5 @@
 package com.example.demo.controller;
-
+import com.example.demo.service.BitacoraService;
 import com.example.demo.model.Usuario;
 import com.example.demo.model.Pasajero;
 import com.example.demo.service.UsuarioService;
@@ -24,6 +24,9 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Autowired
+    private BitacoraService bitacoraService;
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Usuario user) {
 
@@ -31,20 +34,21 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Datos incompletos");
         }
 
-        // Buscar en tabla Usuario
         Usuario usuario = usuarioService.findByUsername(user.getUsername());
         if (usuario != null && usuario.getPassword().equals(user.getPassword())) {
             String token = jwtUtil.generateToken(usuario.getUsername(), usuario.getRol());
+            bitacoraService.registrar(usuario.getUsername(), "LOGIN", "Usuario inicio sesion con rol " + usuario.getRol());
             return ResponseEntity.ok(token);
         }
 
-        // Buscar en tabla Pasajero
         Pasajero pasajero = pasajeroService.findByPasaporte(user.getUsername());
         if (pasajero != null && pasajero.getPassword().equals(user.getPassword())) {
             String token = jwtUtil.generateToken(pasajero.getPasaporte(), pasajero.getRol());
+            bitacoraService.registrar(pasajero.getPasaporte(), "LOGIN", "Pasajero inicio sesion");
             return ResponseEntity.ok(token);
         }
 
+        bitacoraService.registrar(user.getUsername(), "LOGIN_FALLIDO", "Intento de inicio de sesion fallido");
         return ResponseEntity.status(401).body("Credenciales incorrectas");
     }
 
@@ -61,6 +65,8 @@ public class AuthController {
         }
 
         pasajeroService.guardar(pasajero);
+        bitacoraService.registrar(pasajero.getPasaporte(), "REGISTRO", "Nuevo pasajero registrado: " + pasajero.getNombre());
         return ResponseEntity.ok("Se ha creado con exito el usuario.");
     }
 }
+

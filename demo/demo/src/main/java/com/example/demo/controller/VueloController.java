@@ -1,5 +1,5 @@
 package com.example.demo.controller;
-
+import com.example.demo.service.BitacoraService;
 import com.example.demo.model.Vuelo;
 import com.example.demo.service.VueloService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import java.util.Map;
 @CrossOrigin(origins = "*")
 public class VueloController {
     @Autowired private VueloService vueloService;
+    @Autowired private BitacoraService bitacoraService;
 
     @GetMapping("/datos")
     public ResponseEntity<?> getDatos() {
@@ -35,6 +36,8 @@ public class VueloController {
         if (!resultado.equals("OK")) {
             return ResponseEntity.badRequest().body(resultado);
         }
+        bitacoraService.registrar("SISTEMA", "CREAR_VUELO", "Se creo el vuelo " + vuelo.getNumeroVuelo());
         return ResponseEntity.ok("Se creo con exito el vuelo");
     }
 }
+

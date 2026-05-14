@@ -29,7 +29,14 @@ public class VueloService {
         if (!vuelo.getFechaHoraLlegada().isAfter(vuelo.getFechaHoraSalida())) {
             return "La fecha y hora de llegada debe ser mayor a la fecha y hora de salida.";
         }
-        vuelo.setEstado("PENDIENTE");
+        var vuelosActivos = vueloRepo.findByAvionIdAndEstadoIn(
+                vuelo.getAvion().getId(),
+                List.of("PENDIENTE ABORDAR", "EN VUELO")
+        );
+        if (!vuelosActivos.isEmpty()) {
+            return "El avion seleccionado ya tiene un vuelo activo o en curso.";
+        }
+        vuelo.setEstado("PENDIENTE ABORDAR");
         vueloRepo.save(vuelo);
         return "OK";
     }

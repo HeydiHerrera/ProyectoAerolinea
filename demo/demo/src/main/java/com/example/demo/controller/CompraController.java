@@ -1,5 +1,5 @@
 package com.example.demo.controller;
-
+import com.example.demo.service.BitacoraService;
 import com.example.demo.model.*;
 import com.example.demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class CompraController {
     @Autowired private PasajeroRepository pasajeroRepo;
     @Autowired private AsientoRepository asientoRepo;
     @Autowired private BoletoRepository boletoRepo;
-
+    @Autowired private BitacoraService bitacoraService;
     @GetMapping("/vuelos-disponibles")
     public ResponseEntity<?> getVuelosDisponibles() {
         var vuelos = vueloRepo.findByEstado("PENDIENTE ABORDAR");
@@ -40,6 +40,7 @@ public class CompraController {
             item.put("modelo", vuelo.getAvion().getModelo());
             resultado.add(item);
         }
+
         return ResponseEntity.ok(resultado);
     }
 
@@ -97,7 +98,7 @@ public class CompraController {
             respuesta.put("clase", asiento.getClase());
             respuesta.put("precio", precio);
             respuesta.put("metodoPago", metodoPago);
-
+            bitacoraService.registrar(pasaporte, "COMPRA_BOLETO", "Compro boleto para vuelo " + vuelo.getNumeroVuelo() + " asiento " + asiento.getNumero() + " clase " + asiento.getClase());
             return ResponseEntity.ok(respuesta);
 
         } catch (Exception e) {

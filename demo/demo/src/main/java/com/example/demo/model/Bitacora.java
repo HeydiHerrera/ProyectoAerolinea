@@ -21,7 +21,7 @@ public class Bitacora {
     public Bitacora() {}
 
     public Bitacora(String usuario, String accion, String detalle) {
-        this.fechaHora = LocalDateTime.now();
+        this.fechaHora = LocalDateTime.now(java.time.ZoneId.of("America/Guatemala"));
         this.usuario = usuario;
         this.accion = accion;
         this.detalle = detalle;

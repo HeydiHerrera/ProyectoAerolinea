@@ -50,4 +50,3 @@ public class AbordajeController {
         return ResponseEntity.ok(abordajeService.finalizarAbordaje(vueloId));
     }
 }
-

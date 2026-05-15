@@ -31,7 +31,26 @@ public class TripulacionController {
                 tripulacion.getCabina2() == null || tripulacion.getCabina3() == null) {
             return ResponseEntity.badRequest().body("Debe ingresar los campos obligatorios");
         }
+
+        // Validar que no haya personas repetidas
+        java.util.Set<Long> ids = new java.util.HashSet<>();
+        if (!ids.add(tripulacion.getPiloto().getId())) return ResponseEntity.badRequest().body("No puede repetir personas en la tripulacion");
+        if (!ids.add(tripulacion.getCopiloto().getId())) return ResponseEntity.badRequest().body("No puede repetir personas en la tripulacion");
+        if (!ids.add(tripulacion.getIngeniero().getId())) return ResponseEntity.badRequest().body("No puede repetir personas en la tripulacion");
+        if (!ids.add(tripulacion.getCabina1().getId())) return ResponseEntity.badRequest().body("No puede repetir personas en la tripulacion");
+        if (!ids.add(tripulacion.getCabina2().getId())) return ResponseEntity.badRequest().body("No puede repetir personas en la tripulacion");
+        if (!ids.add(tripulacion.getCabina3().getId())) return ResponseEntity.badRequest().body("No puede repetir personas en la tripulacion");
+
+        // Validar que no estén ya asignados
+        List<Long> asignados = tripulacionService.getPersonalAsignado();
+        for (Long id : ids) {
+            if (asignados.contains(id)) {
+                return ResponseEntity.badRequest().body("Una o mas personas ya estan asignadas a otra tripulacion");
+            }
+        }
+
         tripulacionService.guardar(tripulacion);
+        bitacoraService.registrar("SISTEMA", "CREAR_TRIPULACION", "Se creo una nueva tripulacion");
         return ResponseEntity.ok("Se creo con exito la tripulacion");
     }
 }

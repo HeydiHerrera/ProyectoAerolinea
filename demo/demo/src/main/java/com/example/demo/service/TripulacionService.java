@@ -45,4 +45,12 @@ public class TripulacionService {
     public Tripulacion guardar(Tripulacion tripulacion) {
         return tripulacionRepo.save(tripulacion);
     }
+    public List<Long> getPersonalAsignado() {
+        List<Long> asignados = new java.util.ArrayList<>();
+        asignados.addAll(tripulacionRepo.findPilotosAsignados());
+        asignados.addAll(tripulacionRepo.findCopilotosAsignados());
+        asignados.addAll(tripulacionRepo.findIngenieroAsignados());
+        asignados.addAll(tripulacionRepo.findCabinaAsignados());
+        return asignados;
+    }
 }

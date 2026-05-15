@@ -13,7 +13,7 @@ public class VueloScheduler {
 
     @Scheduled(fixedRate = 60000)
     public void actualizarEstadoVuelos() {
-        LocalDateTime ahora = LocalDateTime.now();
+        LocalDateTime ahora = LocalDateTime.now ();
 
         // Vuelos que ya salieron pero aún no llegan → EN VUELO
         var pendientes = vueloRepo.findByEstado("PENDIENTE ABORDAR");

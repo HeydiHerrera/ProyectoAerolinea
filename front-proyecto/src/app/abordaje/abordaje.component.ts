@@ -70,14 +70,19 @@ export class AbordajeComponent implements OnInit {
     });
   }
 
-  finalizarAbordaje() {
+finalizarAbordaje() {
     this.http.post('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/abordaje/finalizar/' + this.vueloSeleccionado.id, {}, { responseType: 'text' }).subscribe({
       next: (res) => {
         this.success = res;
         this.vueloSeleccionado = null;
         this.cargarVuelos();
+        this.cdr.detectChanges();
       },
-      error: () => this.error = 'Error al finalizar abordaje'
+      error: (err) => {
+        this.error = err.error || 'Error al finalizar abordaje';
+        this.success = '';
+        this.cdr.detectChanges();
+      }
     });
   }
 

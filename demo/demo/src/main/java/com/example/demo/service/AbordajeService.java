@@ -47,7 +47,7 @@ public class AbordajeService {
         if (vuelo == null) {
             return "Vuelo no encontrado";
         }
-        if (vuelo.getFechaHoraSalida().isAfter(LocalDateTime.now())) {
+        if (vuelo.getFechaHoraSalida().isAfter(LocalDateTime.now(java.time.ZoneId.of("America/Guatemala")))) {
             return "No se puede finalizar el abordaje antes de la hora de salida";
         }
         List<Boleto> boletos = boletoRepo.findByVueloId(vueloId);

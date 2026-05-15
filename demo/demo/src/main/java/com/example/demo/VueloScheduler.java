@@ -17,7 +17,7 @@ public class VueloScheduler {
 
     @Scheduled(fixedRate = 60000)
     public void actualizarEstadoVuelos() {
-        LocalDateTime ahora = LocalDateTime.now();
+        LocalDateTime ahora = LocalDateTime.now(java.time.ZoneId.of("America/Guatemala"));
 
         // Vuelos que ya salieron → EN VUELO y cancelar boletos pendientes
         var pendientes = vueloRepo.findByEstado("PENDIENTE ABORDAR");

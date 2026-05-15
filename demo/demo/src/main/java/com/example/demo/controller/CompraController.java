@@ -83,7 +83,7 @@ public class CompraController {
             boleto.setAsiento(asiento);
             boleto.setClase(asiento.getClase());
             boleto.setPrecio(precio);
-            boleto.setEstado("PENDIENTE");
+            boleto.setEstado("PENDIENTE ABORDAR");
             boleto.setCantidadMaletas(0);
             boleto.setRecargo(0.0);
             boletoRepo.save(boleto);

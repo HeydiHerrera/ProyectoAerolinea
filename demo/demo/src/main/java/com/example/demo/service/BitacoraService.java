@@ -4,6 +4,7 @@ import com.example.demo.model.Bitacora;
 import com.example.demo.repository.BitacoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.demo.service.BitacoraService;
 
 @Service
 public class BitacoraService {

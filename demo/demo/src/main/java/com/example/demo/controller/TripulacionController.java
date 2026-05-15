@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.List;
 import com.example.demo.model.Tripulacion;
+import com.example.demo.service.BitacoraService;
 import com.example.demo.service.TripulacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +14,9 @@ import java.util.Map;
 @RequestMapping("/tripulacion")
 @CrossOrigin(origins = "*")
 public class TripulacionController {
+
     @Autowired private TripulacionService tripulacionService;
+    @Autowired private BitacoraService bitacoraService;
 
     @GetMapping("/personal")
     public ResponseEntity<?> getPersonal() {
@@ -32,7 +36,6 @@ public class TripulacionController {
             return ResponseEntity.badRequest().body("Debe ingresar los campos obligatorios");
         }
 
-        // Validar que no haya personas repetidas
         java.util.Set<Long> ids = new java.util.HashSet<>();
         if (!ids.add(tripulacion.getPiloto().getId())) return ResponseEntity.badRequest().body("No puede repetir personas en la tripulacion");
         if (!ids.add(tripulacion.getCopiloto().getId())) return ResponseEntity.badRequest().body("No puede repetir personas en la tripulacion");
@@ -41,7 +44,6 @@ public class TripulacionController {
         if (!ids.add(tripulacion.getCabina2().getId())) return ResponseEntity.badRequest().body("No puede repetir personas en la tripulacion");
         if (!ids.add(tripulacion.getCabina3().getId())) return ResponseEntity.badRequest().body("No puede repetir personas en la tripulacion");
 
-        // Validar que no estén ya asignados
         List<Long> asignados = tripulacionService.getPersonalAsignado();
         for (Long id : ids) {
             if (asignados.contains(id)) {

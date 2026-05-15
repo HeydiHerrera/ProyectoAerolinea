@@ -46,7 +46,12 @@ public class AbordajeController {
 
     @PostMapping("/finalizar/{vueloId}")
     public ResponseEntity<?> finalizar(@PathVariable Long vueloId) {
-        bitacoraService.registrar("SISTEMA", "FINALIZAR_ABORDAJE", "Abordaje finalizado para vuelo " + vueloId);
-        return ResponseEntity.ok(abordajeService.finalizarAbordaje(vueloId));
+        String resultado = abordajeService.finalizarAbordaje(vueloId);
+        if (resultado.equals("Se completo el abordaje")) {
+            bitacoraService.registrar("SISTEMA", "FINALIZAR_ABORDAJE", "Abordaje finalizado para vuelo " + vueloId);
+            return ResponseEntity.ok(resultado);
+        } else {
+            return ResponseEntity.badRequest().body(resultado);
+        }
     }
 }

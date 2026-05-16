@@ -21,13 +21,23 @@ public class CompraController {
     @Autowired private BoletoRepository boletoRepo;
     @Autowired private BitacoraService bitacoraService;
     @GetMapping("/vuelos-disponibles")
-    public ResponseEntity<?> getVuelosDisponibles() {
-        var vuelos = vueloRepo.findByEstado("PENDIENTE ABORDAR");
-        if (vuelos.isEmpty()) {
-            return ResponseEntity.status(404).body("No hay vuelos disponibles");
+    public ResponseEntity<?> getVuelosDisponibles(
+            @RequestParam(required = false) Long salidaId,
+            @RequestParam(required = false) Long llegadaId,
+            @RequestParam(required = false) String fecha) {
+
+        if (salidaId == null || llegadaId == null || fecha == null) {
+            return ResponseEntity.status(404).body("No se encontraron vuelos según los parámetros ingresados");
         }
+
+        var vuelos = vueloRepo.findByEstado("PENDIENTE ABORDAR");
         List<Map<String, Object>> resultado = new java.util.ArrayList<>();
+
         for (var vuelo : vuelos) {
+            if (!vuelo.getAeropuertoSalida().getId().equals(salidaId)) continue;
+            if (!vuelo.getAeropuertoLlegada().getId().equals(llegadaId)) continue;
+            if (!vuelo.getFechaHoraSalida().toLocalDate().toString().equals(fecha)) continue;
+
             Map<String, Object> item = new HashMap<>();
             item.put("id", vuelo.getId());
             item.put("numeroVuelo", vuelo.getNumeroVuelo());
@@ -39,6 +49,10 @@ public class CompraController {
             item.put("precioEjecutiva", vuelo.getPrecioEjecutiva());
             item.put("modelo", vuelo.getAvion().getModelo());
             resultado.add(item);
+        }
+
+        if (resultado.isEmpty()) {
+            return ResponseEntity.status(404).body("No se encontraron vuelos según los parámetros ingresados");
         }
 
         return ResponseEntity.ok(resultado);
@@ -71,7 +85,17 @@ public class CompraController {
             if (existeBoleto.isPresent()) {
                 return ResponseEntity.badRequest().body("Ya tiene un boleto para este vuelo");
             }
-
+// Validar que no tenga vuelo en la misma fecha y hora
+            List<Boleto> boletosExistentes = boletoRepo.findByPasajeroPasaporte(pasaporte);
+            for (Boleto b : boletosExistentes) {
+                if (!b.getEstado().equals("CANCELADO")) {
+                    boolean seTraslapa = vuelo.getFechaHoraSalida().isBefore(b.getVuelo().getFechaHoraLlegada()) &&
+                            vuelo.getFechaHoraLlegada().isAfter(b.getVuelo().getFechaHoraSalida());
+                    if (seTraslapa) {
+                        return ResponseEntity.badRequest().body("No se puede seleccionar el vuelo porque ya tiene vuelos asignados");
+                    }
+                }
+            }
             Asiento asiento = asientoOpt.get();
             Pasajero pasajero = pasajeroOpt.get();
 

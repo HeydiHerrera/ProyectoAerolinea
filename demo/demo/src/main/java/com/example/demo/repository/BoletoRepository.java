@@ -7,4 +7,5 @@ import java.util.Optional;
 public interface BoletoRepository extends JpaRepository<Boleto, Long> {
     List<Boleto> findByVueloId(Long vueloId);
     Optional<Boleto> findByVueloIdAndPasajeroPasaporte(Long vueloId, String pasaporte);
+    List<Boleto> findByPasajeroPasaporte(String pasaporte);
 }

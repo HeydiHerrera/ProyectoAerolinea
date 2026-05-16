@@ -1,0 +1,66 @@
+<div class="pase-container">
+  <div class="pase-card" *ngIf="boleto">
+    <div class="pase-header">
+      <div class="airline-logo">✈️</div>
+      <h1>AEROLINEA LOS PRIMOS</h1>
+      <h2>PASE DE ABORDAR</h2>
+    </div>
+
+    <div class="pase-body">
+      <div class="ruta">
+        <div class="aeropuerto">
+          <span class="ciudad">{{ boleto.origen }}</span>
+          <span class="label">ORIGEN</span>
+        </div>
+        <div class="flecha">✈️</div>
+        <div class="aeropuerto">
+          <span class="ciudad">{{ boleto.destino }}</span>
+          <span class="label">DESTINO</span>
+        </div>
+      </div>
+
+      <div class="separador"></div>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">VUELO</span>
+          <span class="info-valor">{{ boleto.numeroVuelo }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">ASIENTO</span>
+          <span class="info-valor">{{ boleto.asiento }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">CLASE</span>
+          <span class="info-valor">{{ boleto.clase }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">FECHA SALIDA</span>
+          <span class="info-valor">{{ boleto.fechaSalida | date:'dd/MM/yyyy HH:mm' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">PRECIO</span>
+          <span class="info-valor">$ {{ boleto.precio }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">MÉTODO DE PAGO</span>
+          <span class="info-valor">{{ boleto.metodoPago }}</span>
+        </div>
+      </div>
+
+      <div class="separador"></div>
+
+      <div class="codigo-barra">
+        <div class="barras">
+          <div *ngFor="let b of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" 
+               class="barra" [style.height]="(30 + b * 3) + 'px'"></div>
+        </div>
+        <p>{{ boleto.numeroVuelo }}-{{ boleto.asiento }}</p>
+      </div>
+    </div>
+
+    <div class="pase-footer">
+      <button class="btn-volver" (click)="volver()">← VOLVER AL INICIO</button>
+    </div>
+  </div>
+</div>

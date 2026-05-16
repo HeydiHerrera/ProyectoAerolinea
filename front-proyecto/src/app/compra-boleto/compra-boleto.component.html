@@ -42,6 +42,10 @@
         <p>Total: <strong>$ {{ getPrecio() }}</strong></p>
       </div>
       <div class='form-group'>
+  <label>Cantidad de Maletas</label>
+  <input type='number' [(ngModel)]='cantidadMaletas' min='0' placeholder='0' />
+</div>
+      <div class='form-group'>
         <label>Metodo de pago</label>
         <select [(ngModel)]='metodoPago'>
           <option value='TARJETA'>Tarjeta de credito/debito</option>

@@ -1,4 +1,5 @@
 ﻿import { Routes } from '@angular/router';
+import { PaseAbordarComponent } from './pase-abordar/pase-abordar.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { TripulacionComponent } from './tripulacion/tripulacion.component';
@@ -38,5 +39,6 @@ export const routes: Routes = [
   { path: 'reporte-aviones', component: ReporteAvionesComponent, canActivate: [RolGuard], data: { roles: ['AdministradorAerolinea'] } },
   { path: 'reporte-pasajeros', component: ReportePasajerosComponent, canActivate: [RolGuard], data: { roles: ['AdministradorAerolinea', 'ConsultasAerolinea'] } },
   { path: 'reporte-equipaje', component: ReporteEquipajeComponent, canActivate: [RolGuard], data: { roles: ['AdministradorAerolinea', 'ConsultasAerolinea'] } },
+  { path: 'pase-abordar', component: PaseAbordarComponent, canActivate: [RolGuard], data: { roles: ['PASAJERO'] } },
   { path: '**', redirectTo: 'login' }
 ];

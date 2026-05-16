@@ -19,6 +19,7 @@ export class CompraBoletoComponent implements OnInit {
   asientoSeleccionado: any = null;
   metodoPago: string = 'TARJETA';
   numeroTarjeta: string = '';
+  cantidadMaletas: number = 0;
   error: string = '';
   success: string = '';
   paso: number = 1;
@@ -77,28 +78,32 @@ export class CompraBoletoComponent implements OnInit {
       this.error = 'Ingrese un numero de tarjeta valido (16 digitos)';
       return;
     }
-
     const token = localStorage.getItem('token');
     if (!token) {
       this.error = 'Debe iniciar sesion';
       return;
     }
-
     const payload = JSON.parse(atob(token.split('.')[1]));
     const pasaporte = payload.sub;
-
     const body = {
       numeroVuelo: this.vuelo.numeroVuelo,
       pasaporte: pasaporte,
       asientoId: this.asientoSeleccionado.id,
-      metodoPago: this.metodoPago
+      metodoPago: this.metodoPago,
+      cantidadMaletas: this.cantidadMaletas
     };
-
     this.http.post<any>('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/compra/comprar', body).subscribe({
       next: (data) => {
-        this.boletoGenerado = data;
-        this.paso = 3;
-        this.cdr.detectChanges();
+        this.router.navigate(['/pase-abordar'], { state: { boleto: {
+          numeroVuelo: data.numeroVuelo,
+          asiento: data.asiento,
+          clase: data.clase,
+          precio: data.precio,
+          metodoPago: data.metodoPago,
+          origen: this.vuelo.origen,
+          destino: this.vuelo.destino,
+          fechaSalida: this.vuelo.fechaSalida
+        }}});
       },
       error: (err) => {
         this.error = err.error || 'Error al procesar la compra';

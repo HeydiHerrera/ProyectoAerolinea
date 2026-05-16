@@ -75,4 +75,7 @@ export class TripulacionComponent implements OnInit {
       }
     });
   }
+  volver() {
+    this.router.navigate(['/dashboard']);
+  }
 }

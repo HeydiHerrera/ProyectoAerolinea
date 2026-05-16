@@ -74,6 +74,7 @@ finalizarAbordaje() {
     this.http.post('https://aerolinea-backend-geh3hdg9abfxcnfw.centralus-01.azurewebsites.net/abordaje/finalizar/' + this.vueloSeleccionado.id, {}, { responseType: 'text' }).subscribe({
       next: (res) => {
         this.success = res;
+        this.error = '';
         this.vueloSeleccionado = null;
         this.cargarVuelos();
         this.cdr.detectChanges();

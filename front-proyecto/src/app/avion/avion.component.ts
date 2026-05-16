@@ -70,4 +70,7 @@ export class AvionComponent implements OnInit {
       aerolinea: { id: null }
     };
   }
+  volver() {
+    this.router.navigate(['/dashboard']);
+  }
 }

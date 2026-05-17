@@ -20,34 +20,32 @@ h2 { font-size: 0.9rem; color: #a0aec0; margin: 5px 0 25px; letter-spacing: 2px;
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 25px;
-  border: 1px solid rgba(255,255,255,0.1);
 
   .form-group {
     margin-bottom: 12px;
     text-align: left;
 
-   label {
-  color: #1a3a5c;
-}
-
-select, input {
-  background: #f0f4f8;
-  color: #1a3a5c;
-  border: 1px solid #ccc;
-  option { background: white; color: #1a3a5c; }
-}
+    label {
+      display: block;
+      color: #1a3a5c;
+      font-size: 0.8rem;
+      margin-bottom: 5px;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
 
     select, input {
       width: 100%;
       padding: 10px 15px;
       border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.1);
-      color: white;
+      border: 1px solid #ccc;
+      background: #f0f4f8;
+      color: #1a3a5c;
       font-size: 0.9rem;
       box-sizing: border-box;
+      display: block;
 
-      option { background: #1a1a2e; color: white; }
+      option { background: white; color: #1a3a5c; }
     }
   }
 
@@ -72,13 +70,13 @@ select, input {
     .btn-limpiar {
       flex: 1;
       padding: 12px;
-      background: rgba(255,255,255,0.1);
+      background: #1a3a5c;
       color: white;
-      border: 1px solid rgba(255,255,255,0.2);
+      border: none;
       border-radius: 8px;
       cursor: pointer;
       letter-spacing: 1px;
-      &:hover { background: rgba(255,255,255,0.2); }
+      &:hover { background: #2d6a9f; }
     }
   }
 }
@@ -97,10 +95,7 @@ select, input {
 
   &:hover { background: rgba(255,255,255,0.12); }
 
-  .vuelo-info {
-    flex: 1;
-  }
-
+  .vuelo-info { flex: 1; }
   .vuelo-numero { font-weight: 700; color: #e2b96f; font-size: 1rem; margin: 0 0 5px 0; }
   .vuelo-ruta { font-size: 0.9rem; color: white; margin: 0 0 4px 0; }
   .vuelo-fecha { font-size: 0.8rem; color: #a0aec0; margin: 0 0 3px 0; }
